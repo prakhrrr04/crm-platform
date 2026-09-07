@@ -55,9 +55,10 @@ class Lead(Base):
     )
 
     status: Mapped[LeadStatus] = mapped_column(
-        SQLEnum(LeadStatus),
-        nullable=False,
-        default=LeadStatus.NEW,
+    SQLEnum(LeadStatus),
+    nullable=False,
+    default=LeadStatus.NEW,
+    index=True,
     )
 
     value: Mapped[float | None] = mapped_column(
@@ -66,9 +67,10 @@ class Lead(Base):
     )
 
     assigned_to: Mapped[uuid.UUID | None] = mapped_column(
-        UUID(as_uuid=True),
-        ForeignKey("users.id"),
-        nullable=True,
+    UUID(as_uuid=True),
+    ForeignKey("users.id"),
+    nullable=True,
+    index=True,
     )
 
     created_by: Mapped[uuid.UUID] = mapped_column(
@@ -78,9 +80,10 @@ class Lead(Base):
     )
 
     created_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True),
-        nullable=False,
-        default=lambda: datetime.now(timezone.utc),
+    DateTime(timezone=True),
+    nullable=False,
+    default=lambda: datetime.now(timezone.utc),
+    index=True,
     )
 
     updated_at: Mapped[datetime] = mapped_column(

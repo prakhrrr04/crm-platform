@@ -38,14 +38,16 @@ class FollowUp(Base):
     )
 
     assigned_to: Mapped[uuid.UUID] = mapped_column(
-        UUID(as_uuid=True),
-        ForeignKey("users.id"),
-        nullable=False,
+    UUID(as_uuid=True),
+    ForeignKey("users.id"),
+    nullable=False,
+    index=True,
     )
 
     due_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True),
-        nullable=False,
+    DateTime(timezone=True),
+    nullable=False,
+    index=True,
     )
 
     status: Mapped[FollowUpStatus] = mapped_column(
